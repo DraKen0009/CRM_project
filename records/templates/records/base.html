@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>{% block title %}  {% endblock title%}</title>
+</head>
+<body class="bg-gray-100">
+  <header class="bg-white shadow">
+    <nav class="container mx-auto px-4 py-2 flex justify-between items-center sticky top-0">
+      <h1 class="text-2xl font-semibold"><a href="{% url 'home'%}">CRM</a></h1>
+      <ul class="space-x-4">
+        <li class="inline-block">
+          <a href="{% url 'home' %}" class="text-gray-600 hover:text-gray-800">Records</a>
+        </li>
+        <li class="inline-block">
+          <a href="{% url 'create' %}" class="text-gray-600 hover:text-gray-800">Add</a>
+        </li>
+          {% if user.is_authenticated %}
+              <li class="inline-block">
+              <a href="{% url 'logout' %}" class="text-gray-600 hover:text-gray-800">Logout</a>
+              </li>
+          {% else %}
+              <li class="inline-block">
+              <a href="{% url 'login' %}" class="text-gray-600 hover:text-gray-800">Login</a>
+              </li>
+          {% endif %}
+
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container mx-auto px-4 py-8 ">
+  {% block content %}
+
+  {% endblock content %}
+  </main>
+
+  <footer class="bg-gray-200 py-4 sticky bottom-0">
+    <div class="container mx-auto px-4 text-center">
+      <p class="text-gray-600">© 2023 CRM. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

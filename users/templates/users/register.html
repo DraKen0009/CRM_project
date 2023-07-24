@@ -1,0 +1,27 @@
+{% extends 'records/base.html' %}
+{% load tailwind_filters %}
+{% load socialaccount %}
+
+{% block title %}
+    Create
+{% endblock %}
+
+{% block content %}
+<div class="w-2/3 mx-auto ">
+  <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+      <p class="text-3xl">Register User</p>
+      {{ form|crispy }}
+    <div class="flex items-center justify-between">
+      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+        Register
+      </button>
+
+<a href="{% provider_login_url 'github' %}">Sign Up</a>
+<a href="{% provider_login_url 'google' %}">Sign Up Google</a>
+    </div>
+  </form>
+
+</div>
+
+{% endblock %}
